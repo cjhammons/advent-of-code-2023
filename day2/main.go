@@ -49,17 +49,6 @@ func main() {
 	println("Id sum is: ", id_sum)
 }
 
-func isValidGame(game Game) bool {
-	if game.Red > RED_COUNT_MAX {
-		return false
-	} else if game.Blue > BLUE_COUNT_MAX {
-		return false
-	} else if game.Green > GREEN_COUNT_MAX {
-		return false
-	}
-	return true
-}
-
 func isValidDraw(r, b, g int) bool {
 	return r <= RED_COUNT_MAX && b <= BLUE_COUNT_MAX && g <= GREEN_COUNT_MAX
 }
