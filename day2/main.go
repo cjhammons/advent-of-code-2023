@@ -26,6 +26,7 @@ func main() {
 		os.Exit(1)
 	}
 
+	println("Part one...")
 	id_sum := 0
 
 	for _, line := range input {
@@ -47,6 +48,40 @@ func main() {
 	}
 
 	println("Id sum is: ", id_sum)
+	println("Part one complete.\n\n")
+	println("------------------------------------------------")
+	println("Part 2")
+
+	powSum := 0
+	for _, line := range input {
+		redMin, blueMin, greenMin := getMinNumbers(line)
+		powSum += (redMin * blueMin * greenMin)
+	}
+
+	println("Power sum is: ", powSum)
+}
+
+func getMinNumbers(line string) (int, int, int) {
+	redMin := 0
+	blueMin := 0
+	greenMin := 0
+
+	parts := strings.Split(line, ": ")
+	draws := strings.Split(parts[1], "; ")
+
+	for _, d := range draws {
+		r, b, g := parseDraw(d)
+		if r > redMin {
+			redMin = r
+		}
+		if b > blueMin {
+			blueMin = b
+		}
+		if g > greenMin {
+			greenMin = g
+		}
+	}
+	return redMin, blueMin, greenMin
 }
 
 func isValidDraw(r, b, g int) bool {
